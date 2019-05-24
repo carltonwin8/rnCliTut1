@@ -22,7 +22,6 @@ export default props => {
 
   return (
     <Swipeable renderLeftActions={LeftActions}>
-      {/* <Swipeable> */}
       <View style={styles.container}>
         <Text>{item.name}</Text>
       </View>

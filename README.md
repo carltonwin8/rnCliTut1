@@ -1,7 +1,9 @@
 # React Native CLI First App
 
-Create this application following the
-[React Native CLI Quickstart](https://facebook.github.io/react-native/docs/getting-started).
+Created this application following:
+
+- [React Native CLI Quickstart](https://facebook.github.io/react-native/docs/getting-started)
+- [Swipe Gestures with react-native-gesture-handler](https://www.reactnativeschool.com/swipe-gestures-with-react-native-gesture-handler)
 
 After installing `node`, `watchman`, `xcode` and `react-native-cli`, this
 project was create with the `react-native init rnCliTut1` command.

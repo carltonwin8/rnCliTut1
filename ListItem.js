@@ -1,5 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, View, Animated } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Animated,
+  TouchableOpacity
+} from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
 const LeftActions = (progress, dragX) => {
@@ -17,11 +23,40 @@ const LeftActions = (progress, dragX) => {
     </View>
   );
 };
+
+const RightActions = ({ progress, dragX, onPress }) => {
+  const scale = dragX.interpolate({
+    inputRange: [-100, 0],
+    outputRange: [1, 0],
+    extrapolate: "clamp"
+  });
+
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.rightAction}>
+        <Animated.Text style={[styles.actionText, { transform: [{ scale }] }]}>
+          Delete
+        </Animated.Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
+
 export default props => {
   const { item, onSwipeFromLeft, onRightPress } = props;
 
   return (
-    <Swipeable renderLeftActions={LeftActions}>
+    <Swipeable
+      renderLeftActions={LeftActions}
+      onSwipeableLeftOpen={onSwipeFromLeft}
+      renderRightActions={(progress, dragX) => (
+        <RightActions
+          progress={progress}
+          dragX={dragX}
+          onPress={onRightPress}
+        />
+      )}
+    >
       <View style={styles.container}>
         <Text>{item.name}</Text>
       </View>
@@ -38,7 +73,13 @@ const styles = StyleSheet.create({
   leftAction: {
     flex: 1,
     backgroundColor: "#388e3c",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignItems: "flex-start"
+  },
+  rightAction: {
+    backgroundColor: "#dd2c00",
+    justifyContent: "center",
+    alignItems: "flex-end"
   },
   actionText: {
     color: "#fff",

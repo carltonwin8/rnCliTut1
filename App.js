@@ -9,11 +9,9 @@
 import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
-  Text,
   SafeAreaView,
   FlatList,
   ActivityIndicator,
-  View,
   Button
 } from "react-native";
 
@@ -22,13 +20,7 @@ import ListItem, { Seperator } from "./ListItem";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: "#fff"
-  },
-  flex: {
-    flex: 1
   }
 });
 
@@ -58,7 +50,6 @@ export default props => {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        style={styles.flex}
         data={people}
         keyExtractor={item => item.url}
         renderItem={({ item }) => (
